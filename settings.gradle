@@ -1,0 +1,8 @@
+rootProject.name = 'multiProjects'
+include ':core'
+include ':frontend'
+include ':backend'
+
+project(':core').projectDir = "$rootDir/core" as File
+project(':frontend').projectDir = "$rootDir/frontend" as File
+project(':backend').projectDir = "$rootDir/backend" as File

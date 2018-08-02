@@ -1,0 +1,9 @@
+
+apply plugin: 'war'
+
+description = 'frontend Maven Webapp'
+dependencies {
+  compile project(':core')
+    compile group: 'org.springframework', name: 'spring-webmvc', version:'5.0.7.RELEASE'
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version:'4.0.1'
+}
