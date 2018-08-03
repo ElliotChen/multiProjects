@@ -2,3 +2,7 @@ target/
 **/profiles/personal/
 .gradle
 build/
+
+.DS_Store
+.idea/
+logs/

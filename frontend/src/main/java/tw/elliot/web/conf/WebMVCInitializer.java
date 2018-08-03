@@ -4,13 +4,14 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.Filter;
 import tw.elliot.conf.ApplicationConfig;
 
-public class WebmvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+import javax.servlet.Filter;
+
+public class WebMVCInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {ApplicationConfig.class};
+		return new Class[] { ApplicationConfig.class, WebSecurityConfig.class};
 	}
 
 	@Override
@@ -23,6 +24,7 @@ public class WebmvcInitializer extends AbstractAnnotationConfigDispatcherServlet
 		return new String[]{"/"};
 	}
 
+
 	@Nullable
 	@Override
 	protected Filter[] getServletFilters() {
@@ -34,9 +36,10 @@ public class WebmvcInitializer extends AbstractAnnotationConfigDispatcherServlet
 
 		return new Filter[] {encodingFilter, threadLocalHolderFilter};
 		*/
-
 		return new Filter[] {encodingFilter};
 	}
+
+
 
 
 
