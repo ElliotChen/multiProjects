@@ -9,12 +9,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
+import tw.elliot.service.DBUserDetailsService;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,27 +36,37 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private String googleKey;
 
 	@Autowired
+	private DBUserDetailsService userDetailsService;
+	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		/*
 		auth
 				.inMemoryAuthentication()
 				.withUser("user").password("password").roles("USER");
+				*/
 	}
 
+	/*
 	@Bean
 	public static NoOpPasswordEncoder passwordEncoder() {
 		return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
 	}
+	*/
 
+	@Override
+	public UserDetailsService userDetailsServiceBean() throws Exception {
+		return userDetailsService;
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-				.anyRequest().authenticated()
+					.anyRequest().authenticated()
 				.and()
-				.oauth2Login().clientRegistrationRepository(createClientRegistrationRepository())
+					.oauth2Login().clientRegistrationRepository(createClientRegistrationRepository())
 				.and()
-				.formLogin();
+					.formLogin().permitAll();
 		/*
 				.loginPage("/oauth_login")
 				.and()

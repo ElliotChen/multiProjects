@@ -19,3 +19,9 @@ mvn clean jetty:run -Pprod
 ```
 connect [localhost](http://localhost:8080/)
 ```
+
+
+## Login Account / Password
+
+username = ```admin```
+password = ```password```

@@ -3,6 +3,7 @@ package tw.elliot.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,4 +18,10 @@ public class User {
 	private String email;
 	@Column(length = 50)
 	private String password;
+
+	@ElementCollection(targetClass = RoleEnum.class, fetch = FetchType.EAGER)
+	@JoinTable(name = "T_USER_ROLES", joinColumns = @JoinColumn(name = "userOid"))
+	@Column(name = "role", length = 20)
+	@Enumerated(EnumType.STRING)
+	private Set<RoleEnum> roles;
 }
