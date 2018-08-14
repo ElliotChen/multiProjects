@@ -3,6 +3,7 @@ package tw.elliot.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "T_TASK")
+@EnableJpaAuditing
 public class Task {
 	@Id
 	@GeneratedValue(generator="system-uuid")

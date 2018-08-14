@@ -13,7 +13,7 @@ public class DefaultCtrl {
 
 	@Value("${environment}")
 	private String environment;
-
+	/*
 	@GetMapping("/")
 	public String index(ModelMap mp) {
 		mp.addAttribute("environment", environment);
@@ -40,4 +40,5 @@ public class DefaultCtrl {
 		return "";
 	}
 
+	*/
 }
