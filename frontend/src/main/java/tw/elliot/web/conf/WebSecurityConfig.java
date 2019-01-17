@@ -16,7 +16,9 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import tw.elliot.service.DBUserDetailsService;
+import tw.elliot.web.filter.MdcFilter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,6 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.oauth2Login().clientRegistrationRepository(createClientRegistrationRepository())
 				.and()
 					.formLogin().permitAll();
+		http.addFilterAfter(new MdcFilter(), BasicAuthenticationFilter.class);
 		/*
 				.loginPage("/oauth_login")
 				.and()
